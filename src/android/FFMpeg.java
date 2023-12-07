@@ -33,7 +33,7 @@ public boolean execute(String action, JSONArray data, CallbackContext callbackCo
                             errorObject.put("errorCode", returnCode);
                             errorObject.put("errorMessage", "Additional error information");
                             errorObject.put("originalData", data);
-                            callbackContext.error(errorObject);
+                            callbackContext.error(errorObject.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                             callbackContext.error("JSONException: " + e.getMessage());

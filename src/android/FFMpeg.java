@@ -15,8 +15,9 @@ import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
  // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
 
-    @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+   @Override
+public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
+    try {
         if (action.equals("exec")) {
             FFmpeg.executeAsync(data.getString(0), new ExecuteCallback() {
                 @Override
@@ -25,7 +26,7 @@ public class FFMpeg extends CordovaPlugin {
                     if (returnCode == RETURN_CODE_SUCCESS)
                         callbackContext.success(result);
                     else
-                        callbackContext.error("Error Code: " + data.getString(0) +  returnCode);
+                        callbackContext.error("Error Code: " + data.getString(0) + " " + returnCode);
                 }
             });
             return true;
@@ -38,6 +39,13 @@ public class FFMpeg extends CordovaPlugin {
                 callbackContext.error(Config.getLastCommandOutput());
             }
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
+    } catch (JSONException e) {
+        e.printStackTrace(); // Handle the exception according to your requirements
+        callbackContext.error("JSONException: " + e.getMessage());
+        return false;
     }
+}
 }

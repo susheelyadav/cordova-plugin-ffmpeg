@@ -3,6 +3,7 @@ package com.marin.plugin;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.ExecuteCallback;
 import com.arthenica.mobileffmpeg.FFmpeg;

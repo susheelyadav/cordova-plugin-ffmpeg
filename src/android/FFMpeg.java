@@ -16,7 +16,7 @@ import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
  // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
 
-  @Override
+@Override
 public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
     if (action.equals("exec")) {
         try {

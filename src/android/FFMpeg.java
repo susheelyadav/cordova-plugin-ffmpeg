@@ -28,11 +28,16 @@ public boolean execute(String action, JSONArray data, CallbackContext callbackCo
                     if (returnCode == RETURN_CODE_SUCCESS) {
                         callbackContext.success(result);
                     } else {
-                        JSONObject errorObject = new JSONObject();
-                        errorObject.put("errorCode", returnCode);
-                        errorObject.put("errorMessage", "Additional error information");
-                        errorObject.put("originalData", data);
-                        callbackContext.error(errorObject);
+                        try {
+                            JSONObject errorObject = new JSONObject();
+                            errorObject.put("errorCode", returnCode);
+                            errorObject.put("errorMessage", "Additional error information");
+                            errorObject.put("originalData", data);
+                            callbackContext.error(errorObject);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            callbackContext.error("JSONException: " + e.getMessage());
+                        }
                     }
                 }
             });
